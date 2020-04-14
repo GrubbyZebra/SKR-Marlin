@@ -1,4 +1,4 @@
-# Marlin Firmware for SKR Bear / SKR 1.4 / TMC2209
+# Marlin Firmware for SKR Bear / SKR 1.4 / TMC2209 / LDO 0.9 XY
 
 ![GitHub](https://img.shields.io/github/license/marlinfirmware/marlin.svg)
 ![GitHub contributors](https://img.shields.io/github/contributors/marlinfirmware/marlin.svg)
@@ -19,8 +19,8 @@ This firmware is configured for a Full Bear MK3 fitted with a BigTreeTech SKR 1.
 * [BTT TMC2209 V1.2](https://www.biqu.equipment/collections/stepper-motor-board/products/bigtreetech-tmc2209-stepper-motor-driver-for-3d-printer-board-vs-tmc2208) on X/Y/Z/E/E0
 
 ### Steppers
-* **X-axis:** LDO 1.8° motor
-* **Y-axis:** LDO 1.8° motor
+* **X-axis:** LDO 0.9° motor
+* **Y-axis:** LDO 0.9° motor
 * **Z-axis:** LDO 1.8° motor
 * **Extruder:** LDO 1.8° motor
 * **Microstepping:** 1/32
