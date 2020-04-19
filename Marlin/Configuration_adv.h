@@ -170,7 +170,7 @@
    * below 2.
    */
   #define WATCH_TEMP_PERIOD 20                // Seconds
-  #define WATCH_TEMP_INCREASE 8               // Degrees Celsius
+  #define WATCH_TEMP_INCREASE 2               // Degrees Celsius
 #endif
 
 /**
@@ -184,7 +184,7 @@
    * As described above, except for the bed (M140/M190/M303).
    */
   #define WATCH_BED_TEMP_PERIOD                60 // Seconds
-  #define WATCH_BED_TEMP_INCREASE               8 // Degrees Celsius
+  #define WATCH_BED_TEMP_INCREASE               2 // Degrees Celsius
 #endif
 
 /**
@@ -1047,7 +1047,7 @@
 
   //#define MENU_ADDAUTOSTART               // Add a menu option to run auto#.g files
 
-  #define EVENT_GCODE_SD_STOP "G28XY"       // G-code to run on Stop Print (e.g., "G28XY" or "G27")
+  #define EVENT_GCODE_SD_STOP "G27 P2 \nM84 X Y E"       // G-code to run on Stop Print (e.g., "G28XY" or "G27")
 
   #if ENABLED(PRINTER_EVENT_LEDS)
     #define PE_LEDS_COMPLETED_TIME  (30*60) // (seconds) Time to keep the LED "done" color before restoring normal illumination
@@ -2282,7 +2282,7 @@
    * STEALTHCHOP_(XY|Z|E) must be enabled to use HYBRID_THRESHOLD.
    * M913 X/Y/Z/E to live tune the setting
    */
-  #define HYBRID_THRESHOLD
+  //#define HYBRID_THRESHOLD
 
   #define X_HYBRID_THRESHOLD     120  // [mm/s]
   #define X2_HYBRID_THRESHOLD    100
