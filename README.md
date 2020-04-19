@@ -13,7 +13,11 @@ This firmware is configured for a Full Bear MK3 fitted with a BigTreeTech SKR 1.
 
 ### Motherboard
 * [BigTreeTech SKR 1.4](https://www.biqu.equipment/collections/skr-series/products/btt-skr-v1-4-skr-v1-4-pro)
-* [Printed control box](https://www.prusaprinters.org/prints/20416-skr-bear-case)
+
+### Printed Parts
+* [Printed control box by RC-CNC](https://www.prusaprinters.org/prints/20416-skr-bear-case)
+* [Universal Printed control box by Juan Pochol](https://www.thingiverse.com/thing:4178177)
+* [Bear TFT35 LCD Screen Case by Jerlo](https://www.prusaprinters.org/prints/25002-jerlo-bear-lcd-cover-bigtreetech-tft35)
 
 ### Drivers
 * [BTT TMC2209 V1.2](https://www.biqu.equipment/collections/stepper-motor-board/products/bigtreetech-tmc2209-stepper-motor-driver-for-3d-printer-board-vs-tmc2208) on X/Y/Z/E/E0
