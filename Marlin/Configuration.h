@@ -427,13 +427,13 @@
 //#define TEMP_SENSOR_1_AS_REDUNDANT
 #define MAX_REDUNDANT_TEMP_SENSOR_DIFF 10
 
-#define TEMP_RESIDENCY_TIME     10  // (seconds) Time to wait for hotend to "settle" in M109
-#define TEMP_WINDOW              3  // (°C) Temperature proximity for the "temperature reached" timer
-#define TEMP_HYSTERESIS          8  // (°C) Temperature proximity considered "close enough" to the target
+#define TEMP_RESIDENCY_TIME      5  // (seconds) Time to wait for hotend to "settle" in M109
+#define TEMP_WINDOW              1  // (°C) Temperature proximity for the "temperature reached" timer
+#define TEMP_HYSTERESIS          3  // (°C) Temperature proximity considered "close enough" to the target
 
-#define TEMP_BED_RESIDENCY_TIME 10  // (seconds) Time to wait for bed to "settle" in M190
-#define TEMP_BED_WINDOW          3  // (°C) Temperature proximity for the "temperature reached" timer
-#define TEMP_BED_HYSTERESIS      8  // (°C) Temperature proximity considered "close enough" to the target
+#define TEMP_BED_RESIDENCY_TIME  5  // (seconds) Time to wait for bed to "settle" in M190
+#define TEMP_BED_WINDOW          1  // (°C) Temperature proximity for the "temperature reached" timer
+#define TEMP_BED_HYSTERESIS      3  // (°C) Temperature proximity considered "close enough" to the target
 
 // Below this temperature the heater will be switched off
 // because it probably indicates a broken thermistor wire.
@@ -742,7 +742,7 @@
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 200, 200, 30, 80 }
+#define DEFAULT_MAX_FEEDRATE          { 240, 240, 20, 25 }
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
@@ -755,7 +755,7 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_ACCELERATION      { 1250, 1250, 400, 4000 }
+#define DEFAULT_MAX_ACCELERATION      { 2000, 2000, 400, 10000 }
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
 #if ENABLED(LIMITED_MAX_ACCEL_EDITING)
@@ -817,7 +817,7 @@
  *
  * See https://github.com/synthetos/TinyG/wiki/Jerk-Controlled-Motion-Explained
  */
-#define S_CURVE_ACCELERATION
+//#define S_CURVE_ACCELERATION
 
 //===========================================================================
 //============================= Z Probe Options =============================
@@ -965,13 +965,13 @@
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
-#define MIN_PROBE_EDGE 5
+#define MIN_PROBE_EDGE 0
 
 // X and Y axis travel speed (mm/m) between probes
 #define XY_PROBE_SPEED 8000
 
 // Feedrate (mm/m) for the first approach when double-probing (MULTIPLE_PROBING == 2)
-#define Z_PROBE_SPEED_FAST (HOMING_FEEDRATE_Z * 4)
+#define Z_PROBE_SPEED_FAST (HOMING_FEEDRATE_Z * 2)
 
 // Feedrate (mm/m) for the "accurate" probe of each point
 #define Z_PROBE_SPEED_SLOW (Z_PROBE_SPEED_FAST / 2)
@@ -1004,7 +1004,7 @@
  */
 #define Z_CLEARANCE_DEPLOY_PROBE    0 // Z Clearance for Deploy/Stow
 #define Z_CLEARANCE_BETWEEN_PROBES  2 // Z Clearance between probe points
-#define Z_CLEARANCE_MULTI_PROBE     1 // Z Clearance between multiple probes
+#define Z_CLEARANCE_MULTI_PROBE     2 // Z Clearance between multiple probes
 //#define Z_AFTER_PROBING             5 // Z position after probing is done
 
 #define Z_PROBE_LOW_POINT          -2 // Farthest distance below the trigger-point to go before stopping
@@ -1029,7 +1029,7 @@
  * These options are most useful for the BLTouch probe, but may also improve
  * readings with inductive probes and piezo sensors.
  */
-//#define PROBING_HEATERS_OFF       // Turn heaters off when probing
+#define PROBING_HEATERS_OFF       // Turn heaters off when probing
 #if ENABLED(PROBING_HEATERS_OFF)
   //#define WAIT_FOR_BED_HEATER     // Wait for bed to heat back up between probes (to improve accuracy)
 #endif
@@ -1289,8 +1289,8 @@
   //#define MESH_EDIT_GFX_OVERLAY   // Display a graphics overlay while editing the mesh
 
   #define MESH_INSET 0              // Set Mesh bounds as an inset region of the bed
-  #define GRID_MAX_POINTS_X  9      // Don't use more than 15 points per axis, implementation limited.
-  #define GRID_MAX_POINTS_Y  9
+  #define GRID_MAX_POINTS_X  7      // Don't use more than 15 points per axis, implementation limited.
+  #define GRID_MAX_POINTS_Y  8
   
 
   #define UBL_MESH_EDIT_MOVES_Z     // Sophisticated users prefer no movement of nozzle
@@ -1365,8 +1365,8 @@
 #define Z_SAFE_HOMING
 
 #if ENABLED(Z_SAFE_HOMING)
-  #define Z_SAFE_HOMING_X_POINT ((X_MIN_POS) + 50)    // X point for Z homing when homing all axes (G28).
-  #define Z_SAFE_HOMING_Y_POINT ((Y_MIN_POS) + 50)    // Y point for Z homing when homing all axes (G28).
+  #define Z_SAFE_HOMING_X_POINT X_CENTER    // X point for Z homing when homing all axes (G28).
+  #define Z_SAFE_HOMING_Y_POINT Y_CENTER    // Y point for Z homing when homing all axes (G28).
 #endif
 
 // Homing speeds (mm/m)
@@ -1696,13 +1696,13 @@
 // This option overrides the default number of encoder pulses needed to
 // produce one step. Should be increased for high-resolution encoders.
 //
-#define ENCODER_PULSES_PER_STEP 4
+#define ENCODER_PULSES_PER_STEP 8
 
 //
 // Use this option to override the number of step signals required to
 // move between next/prev menu items.
 //
-#define ENCODER_STEPS_PER_MENU_ITEM 1
+//#define ENCODER_STEPS_PER_MENU_ITEM 1
 
 /**
  * Encoder Direction Options

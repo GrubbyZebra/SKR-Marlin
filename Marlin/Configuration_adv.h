@@ -376,7 +376,7 @@
  *
  * Define one or both of these to override the default 0-255 range.
  */
-#define FAN_MIN_PWM 80
+#define FAN_MIN_PWM 20 //Winsinn/Delta fan 80 for Mecahtronics
 //#define FAN_MAX_PWM 128
 
 /**
@@ -680,7 +680,7 @@
   // Define probe X and Y positions for Z1, Z2 [, Z3 [, Z4]]
   // If not defined, probe limits will be used.
   // Override with 'M422 S<index> X<pos> Y<pos>'
-  #define Z_STEPPER_ALIGN_XY { {  35, 105 }, { 235,  105 } }
+  #define Z_STEPPER_ALIGN_XY { {  25, 90 }, { 230,  90 } }
 
   /**
    * Orientation for the automatically-calculated probe positions.
@@ -1004,7 +1004,7 @@
 //#define LCD_SET_PROGRESS_MANUALLY
 
 // Show the E position (filament used) during printing
-//#define LCD_SHOW_E_TOTAL
+#define LCD_SHOW_E_TOTAL
 
 #if ENABLED(SHOW_BOOTSCREEN)
   #define BOOTSCREEN_TIMEOUT 4000        // (ms) Total Duration to display the boot screen(s)
@@ -1556,17 +1556,17 @@
  */
 #if PROBE_SELECTED && !IS_KINEMATIC
   //#define MIN_PROBE_EDGE_LEFT MIN_PROBE_EDGE
-  //#define MIN_PROBE_EDGE_RIGHT MIN_PROBE_EDGE
+  #define MIN_PROBE_EDGE_RIGHT MIN_PROBE_EDGE + 20
   //#define MIN_PROBE_EDGE_FRONT MIN_PROBE_EDGE
-  //#define MIN_PROBE_EDGE_BACK MIN_PROBE_EDGE
+  #define MIN_PROBE_EDGE_BACK MIN_PROBE_EDGE + 20
 #endif
 
 #if EITHER(MESH_BED_LEVELING, AUTO_BED_LEVELING_UBL)
   // Override the mesh area if the automatic (max) area is too large
-  //#define MESH_MIN_X MESH_INSET
-  //#define MESH_MIN_Y MESH_INSET
-  //#define MESH_MAX_X X_BED_SIZE - (MESH_INSET)
-  //#define MESH_MAX_Y Y_BED_SIZE - (MESH_INSET)
+  #define MESH_MIN_X X_MIN_POS
+  #define MESH_MIN_Y Y_MIN_POS
+  #define MESH_MAX_X X_BED_SIZE - 25
+  #define MESH_MAX_Y Y_BED_SIZE
 #endif
 
 /**
@@ -2282,17 +2282,17 @@
    * STEALTHCHOP_(XY|Z|E) must be enabled to use HYBRID_THRESHOLD.
    * M913 X/Y/Z/E to live tune the setting
    */
-  #define HYBRID_THRESHOLD
+  //#define HYBRID_THRESHOLD
 
-  #define X_HYBRID_THRESHOLD     120  // [mm/s]
+  #define X_HYBRID_THRESHOLD     160  // [mm/s]
   #define X2_HYBRID_THRESHOLD    100
-  #define Y_HYBRID_THRESHOLD     120
+  #define Y_HYBRID_THRESHOLD     160
   #define Y2_HYBRID_THRESHOLD    100
-  #define Z_HYBRID_THRESHOLD     100
-  #define Z2_HYBRID_THRESHOLD    100
+  #define Z_HYBRID_THRESHOLD     10
+  #define Z2_HYBRID_THRESHOLD    10
   #define Z3_HYBRID_THRESHOLD      3
   #define Z4_HYBRID_THRESHOLD      3
-  #define E0_HYBRID_THRESHOLD     30
+  #define E0_HYBRID_THRESHOLD     40
   #define E1_HYBRID_THRESHOLD     30
   #define E2_HYBRID_THRESHOLD     30
   #define E3_HYBRID_THRESHOLD     30
