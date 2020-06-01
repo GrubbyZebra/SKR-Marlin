@@ -376,8 +376,8 @@
  *
  * Define one or both of these to override the default 0-255 range.
  */
-#define FAN_MIN_PWM 80
-//#define FAN_MAX_PWM 128
+#define FAN_MIN_PWM 5
+#define FAN_MAX_PWM 255
 
 /**
  * FAST PWM FAN Settings
@@ -1563,10 +1563,10 @@
 
 #if EITHER(MESH_BED_LEVELING, AUTO_BED_LEVELING_UBL)
   // Override the mesh area if the automatic (max) area is too large
-  //#define MESH_MIN_X MESH_INSET
-  //#define MESH_MIN_Y MESH_INSET
-  //#define MESH_MAX_X X_BED_SIZE - (MESH_INSET)
-  //#define MESH_MAX_Y Y_BED_SIZE - (MESH_INSET)
+  //#define MESH_MIN_X 0
+  //#define MESH_MIN_Y 0
+  //#define MESH_MAX_X X_BED_SIZE
+  //#define MESH_MAX_Y Y_BED_SIZE
 #endif
 
 /**
@@ -2045,8 +2045,8 @@
   #define INTERPOLATE       true  // Interpolate X/Y/Z_MICROSTEPS to 256
 
   #if AXIS_IS_TMC(X)
-    #define X_CURRENT        500  // (mA) RMS current. Multiply by 1.414 for peak current.
-    #define X_CURRENT_HOME   200  // (mA) RMS current for sensorless homing
+    #define X_CURRENT        1000  // (mA) RMS current. Multiply by 1.414 for peak current.
+    #define X_CURRENT_HOME   250  // (mA) RMS current for sensorless homing
     #define X_MICROSTEPS     16   // 0..256
     #define X_RSENSE          0.11
     #define X_CHAIN_POS      -1    // <=0 : Not chained. 1 : MCU MOSI connected. 2 : Next in chain, ...
@@ -2061,8 +2061,8 @@
   #endif
 
   #if AXIS_IS_TMC(Y)
-    #define Y_CURRENT        600
-    #define Y_CURRENT_HOME   300
+    #define Y_CURRENT        1000
+    #define Y_CURRENT_HOME   250
     #define Y_MICROSTEPS     16
     #define Y_RSENSE          0.11
     #define Y_CHAIN_POS      -1
@@ -2109,7 +2109,7 @@
   #endif
 
   #if AXIS_IS_TMC(E0)
-    #define E0_CURRENT      550
+    #define E0_CURRENT      450
     #define E0_MICROSTEPS    32
     #define E0_RSENSE         0.11
     #define E0_CHAIN_POS     -1
@@ -2282,7 +2282,7 @@
    * STEALTHCHOP_(XY|Z|E) must be enabled to use HYBRID_THRESHOLD.
    * M913 X/Y/Z/E to live tune the setting
    */
-  #define HYBRID_THRESHOLD
+  //#define HYBRID_THRESHOLD
 
   #define X_HYBRID_THRESHOLD     120  // [mm/s]
   #define X2_HYBRID_THRESHOLD    100
@@ -2328,9 +2328,9 @@
 
   #if EITHER(SENSORLESS_HOMING, SENSORLESS_PROBING)
     // TMC2209: 0...255. TMC2130: -64...63
-    #define X_STALL_SENSITIVITY  90
+    #define X_STALL_SENSITIVITY  80
     #define X2_STALL_SENSITIVITY X_STALL_SENSITIVITY
-    #define Y_STALL_SENSITIVITY  100
+    #define Y_STALL_SENSITIVITY  75
     //#define Z_STALL_SENSITIVITY  8
     //#define SPI_ENDSTOPS              // TMC2130 only
     #define IMPROVE_HOMING_RELIABILITY
