@@ -71,7 +71,7 @@
 // @section info
 
 // Author info of this build printed to the host during boot and M115
-#define STRING_CONFIG_H_AUTHOR "(Chris Warkocki, SKR V1.4 PINDA Stock TURBO)" // Who made the changes.
+#define STRING_CONFIG_H_AUTHOR "(Chris Warkocki, SKR V1.4 PINDA MK2.5s TURBO)" // Who made the changes.
 //#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
 
 /**
@@ -132,7 +132,7 @@
 #endif
 
 // Name displayed in the LCD "Ready" message and Info menu
-#define CUSTOM_MACHINE_NAME "SKR Bear TURBO"
+#define CUSTOM_MACHINE_NAME "Orange Bear"
 
 // Printer's unique ID, used by some programs to differentiate between machines.
 // Choose your own or use a service like http://www.uuidgenerator.net/version4
@@ -708,7 +708,7 @@
  *
  * :[2,3,4,5,6,7]
  */
-//#define ENDSTOP_NOISE_THRESHOLD 2
+#define ENDSTOP_NOISE_THRESHOLD 2
 
 //=============================================================================
 //============================== Movement Settings ============================
@@ -965,7 +965,7 @@
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
-#define MIN_PROBE_EDGE 5
+#define MIN_PROBE_EDGE 10
 
 // X and Y axis travel speed (mm/m) between probes
 #define XY_PROBE_SPEED 8000
@@ -1062,13 +1062,13 @@
 
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
 #define INVERT_X_DIR false
-#define INVERT_Y_DIR true
+#define INVERT_Y_DIR false
 #define INVERT_Z_DIR false
 
 // @section extruder
 
 // For direct drive extruder v9 set to true, for geared extruder set to false.
-#define INVERT_E0_DIR false
+#define INVERT_E0_DIR true
 #define INVERT_E1_DIR false
 #define INVERT_E2_DIR false
 #define INVERT_E3_DIR false
@@ -1145,7 +1145,7 @@
  * For other boards you may need to define FIL_RUNOUT_PIN, FIL_RUNOUT2_PIN, etc.
  * By default the firmware assumes HIGH=FILAMENT PRESENT.
  */
-#define FILAMENT_RUNOUT_SENSOR
+//#define FILAMENT_RUNOUT_SENSOR
 #if ENABLED(FILAMENT_RUNOUT_SENSOR)
   #define NUM_RUNOUT_SENSORS   1     // Number of sensors, up to one per extruder. Define a FIL_RUNOUT#_PIN for each.
   #define FIL_RUNOUT_INVERTING true // Set to true to invert the logic of the sensor.
@@ -1209,8 +1209,8 @@
  */
 //#define AUTO_BED_LEVELING_3POINT
 //#define AUTO_BED_LEVELING_LINEAR
-//#define AUTO_BED_LEVELING_BILINEAR
-#define AUTO_BED_LEVELING_UBL
+#define AUTO_BED_LEVELING_BILINEAR
+//#define AUTO_BED_LEVELING_UBL
 //#define MESH_BED_LEVELING
 
 /**
@@ -1256,7 +1256,7 @@
 #if EITHER(AUTO_BED_LEVELING_LINEAR, AUTO_BED_LEVELING_BILINEAR)
 
   // Set the number of grid points per dimension.
-  #define GRID_MAX_POINTS_X 3
+  #define GRID_MAX_POINTS_X 7
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
   // Probe along the Y axis, advancing X after each column
@@ -1266,13 +1266,13 @@
 
     // Beyond the probed grid, continue the implied tilt?
     // Default is to maintain the height of the nearest edge.
-    //#define EXTRAPOLATE_BEYOND_GRID
+    #define EXTRAPOLATE_BEYOND_GRID
 
     //
     // Experimental Subdivision of the grid by Catmull-Rom method.
     // Synthesizes intermediate points to produce a more detailed mesh.
     //
-    //#define ABL_BILINEAR_SUBDIVISION
+    #define ABL_BILINEAR_SUBDIVISION
     #if ENABLED(ABL_BILINEAR_SUBDIVISION)
       // Number of subdivisions between probe points
       #define BILINEAR_SUBDIVISIONS 3
@@ -2206,7 +2206,7 @@
 #endif
 
 // Support for Adafruit Neopixel LED driver
-//#define NEOPIXEL_LED
+#define NEOPIXEL_LED
 #if ENABLED(NEOPIXEL_LED)
   #define NEOPIXEL_TYPE   NEO_GRB // NEO_GRBW / NEO_GRB - four/three channel driver type (defined in Adafruit_NeoPixel.h)
   #define NEOPIXEL_PIN     P1_24       // LED driving pin

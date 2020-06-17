@@ -376,7 +376,7 @@
  *
  * Define one or both of these to override the default 0-255 range.
  */
-#define FAN_MIN_PWM 80
+//#define FAN_MIN_PWM 80
 //#define FAN_MAX_PWM 128
 
 /**
@@ -591,11 +591,11 @@
 // @section homing
 
 // Homing hits each endstop, retracts by these distances, then does a slower bump.
-#define X_HOME_BUMP_MM 0
-#define Y_HOME_BUMP_MM 0
+#define X_HOME_BUMP_MM 5
+#define Y_HOME_BUMP_MM 5
 #define Z_HOME_BUMP_MM 0
 #define HOMING_BUMP_DIVISOR { 2, 2, 4 }  // Re-Bump Speed Divisor (Divides the Homing Feedrate)
-//#define QUICK_HOME                     // If homing includes X and Y, do a diagonal move initially
+#define QUICK_HOME                     // If homing includes X and Y, do a diagonal move initially
 #define HOMING_BACKOFF_MM { 2, 2, 2 }  // (mm) Move away from the endstops after homing
 
 // When G28 is called, this option will make Y home before X
@@ -976,14 +976,14 @@
    * LED Control Menu
    * Add LED Control to the LCD menu
    */
-  //#define LED_CONTROL_MENU
+  #define LED_CONTROL_MENU
   #if ENABLED(LED_CONTROL_MENU)
     #define LED_COLOR_PRESETS                 // Enable the Preset Color menu option
     #if ENABLED(LED_COLOR_PRESETS)
       #define LED_USER_PRESET_RED        255  // User defined RED value
       #define LED_USER_PRESET_GREEN        0  // User defined GREEN value
       #define LED_USER_PRESET_BLUE       255  // User defined BLUE value
-      #define LED_USER_PRESET_WHITE      255  // User defined WHITE value
+      #define LED_USER_PRESET_WHITE        0  // User defined WHITE value
       #define LED_USER_PRESET_BRIGHTNESS 255  // User defined intensity
       #define LED_USER_PRESET_STARTUP       // Have the printer display the user preset color on startup
     #endif
@@ -992,7 +992,7 @@
 #endif // HAS_LCD_MENU
 
 // Scroll a longer status message into view
-#define STATUS_MESSAGE_SCROLLING
+//#define STATUS_MESSAGE_SCROLLING
 
 // On the Info Screen, display XY with one decimal place when possible
 //#define LCD_DECIMAL_SMALL_XY
@@ -1765,7 +1765,7 @@
 // enter the serial receive buffer, so they cannot be blocked.
 // Currently handles M108, M112, M410
 // Does not work on boards using AT90USB (USBCON) processors!
-//#define EMERGENCY_PARSER
+#define EMERGENCY_PARSER
 
 // Bad Serial-connections can miss a received command by sending an 'ok'
 // Therefore some clients abort after 30 seconds in a timeout.
@@ -2046,7 +2046,7 @@
 
   #if AXIS_IS_TMC(X)
     #define X_CURRENT        500  // (mA) RMS current. Multiply by 1.414 for peak current.
-    #define X_CURRENT_HOME   200  // (mA) RMS current for sensorless homing
+    #define X_CURRENT_HOME   500  // (mA) RMS current for sensorless homing
     #define X_MICROSTEPS     16   // 0..256
     #define X_RSENSE          0.11
     #define X_CHAIN_POS      -1    // <=0 : Not chained. 1 : MCU MOSI connected. 2 : Next in chain, ...
@@ -2062,7 +2062,7 @@
 
   #if AXIS_IS_TMC(Y)
     #define Y_CURRENT        600
-    #define Y_CURRENT_HOME   300
+    #define Y_CURRENT_HOME   600
     #define Y_MICROSTEPS     16
     #define Y_RSENSE          0.11
     #define Y_CHAIN_POS      -1
@@ -2254,7 +2254,7 @@
    * Define you own with
    * { <off_time[1..15]>, <hysteresis_end[-3..12]>, hysteresis_start[1..8] }
    */
-  #define CHOPPER_TIMING CHOPPER_DEFAULT_24V
+  #define CHOPPER_TIMING CHOPPER_DEFAULT_12V
 
   /**
    * Monitor Trinamic drivers for error conditions,
@@ -2324,7 +2324,7 @@
    * IMPROVE_HOMING_RELIABILITY tunes acceleration and jerk when
    * homing and adds a guard period for endstop triggering.
    */
-  #define SENSORLESS_HOMING // StallGuard capable drivers only
+  //#define SENSORLESS_HOMING // StallGuard capable drivers only
 
   #if EITHER(SENSORLESS_HOMING, SENSORLESS_PROBING)
     // TMC2209: 0...255. TMC2130: -64...63
@@ -2340,7 +2340,7 @@
    * Beta feature!
    * Create a 50/50 square wave step pulse optimal for stepper drivers.
    */
-  //#define SQUARE_WAVE_STEPPING
+  #define SQUARE_WAVE_STEPPING
 
   /**
    * Enable M122 debugging command for TMC stepper drivers.
