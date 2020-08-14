@@ -489,10 +489,10 @@
 
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 
- // SKR V1.4 MK3s
-  #define DEFAULT_Kp 16.50
-  #define DEFAULT_Ki 1.16
-  #define DEFAULT_Kd 58.80
+ // SKR V1.4 Zaribo
+  #define DEFAULT_Kp 34.37
+  #define DEFAULT_Ki 4.69
+  #define DEFAULT_Kd 62.95
 
   // MakerGear
   //#define DEFAULT_Kp 7.0
@@ -982,7 +982,7 @@
  *
  * Specify a Probe position as { X, Y, Z }
  */
-#define NOZZLE_TO_PROBE_OFFSET { 23, 5, 0 }
+#define NOZZLE_TO_PROBE_OFFSET { 23, 5, -0.525 }
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
