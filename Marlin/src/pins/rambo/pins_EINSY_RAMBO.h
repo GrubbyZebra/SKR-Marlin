@@ -128,6 +128,7 @@
 //
 // Misc. Functions
 //
+#define FIL_RUNOUT_PIN                        62
 #define SDSS                                  77
 #define LED_PIN                               13
 
