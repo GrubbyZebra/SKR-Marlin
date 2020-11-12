@@ -70,7 +70,7 @@
 // @section info
 
 // Author info of this build printed to the host during boot and M115
-#define STRING_CONFIG_H_AUTHOR "(Chris Warkocki, SKR Bear w/ LDO Planetary V6 Volcano)" // Who made the changes.
+#define STRING_CONFIG_H_AUTHOR "(Frank Dixon, SKR Bear 320 BLTouch BMG 09.E MMU2)" // Who made the changes.
 //#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
 
 /**
@@ -112,6 +112,12 @@
 #define SERIAL_PORT_2 -1
 
 /**
+ * Select a secondary serial port on the board to use for communication with the host.
+ * :[-1, 0, 1, 2, 3, 4, 5, 6, 7]
+ */
+#define SERIAL_PORT_3 2
+
+/**
  * This setting determines the communication speed of the printer.
  *
  * 250000 works in most cases, but you might try a lower speed if
@@ -131,7 +137,7 @@
 #endif
 
 // Name displayed in the LCD "Ready" message and Info menu
-#define CUSTOM_MACHINE_NAME "SKR Bear"
+#define CUSTOM_MACHINE_NAME "SKR Bear 320 Turbo"
 
 // Printer's unique ID, used by some programs to differentiate between machines.
 // Choose your own or use a service like https://www.uuidgenerator.net/version4
@@ -141,7 +147,7 @@
 
 // This defines the number of extruders
 // :[0, 1, 2, 3, 4, 5, 6, 7, 8]
-#define EXTRUDERS 1
+#define EXTRUDERS 5
 
 // Generally expected filament diameter (1.75, 2.85, 3.0, ...). Used for Volumetric, Filament Width Sensor, etc.
 #define DEFAULT_NOMINAL_FILAMENT_DIA 1.75
@@ -183,7 +189,7 @@
  *
  * For additional configuration see Configuration_adv.h
  */
-//#define PRUSA_MMU2
+#define PRUSA_MMU2
 
 // A dual extruder that uses a single stepper motor
 //#define SWITCHING_EXTRUDER
@@ -415,7 +421,7 @@
  *   998 : Dummy Table that ALWAYS reads 25°C or the temperature defined below.
  *   999 : Dummy Table that ALWAYS reads 100°C or the temperature defined below.
  */
-#define TEMP_SENSOR_0 5
+#define TEMP_SENSOR_0 67
 #define TEMP_SENSOR_1 0
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_3 0
@@ -424,7 +430,7 @@
 #define TEMP_SENSOR_6 0
 #define TEMP_SENSOR_7 0
 #define TEMP_SENSOR_BED 1
-#define TEMP_SENSOR_PROBE 1
+#define TEMP_SENSOR_PROBE 0
 #define TEMP_SENSOR_CHAMBER 0
 
 // Dummy thermistor constant temperature readings, for use with 998 and 999
@@ -741,14 +747,14 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 400, 280 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 400, 1660 }
 
 /**
  * Default Max Feed Rate (mm/s)
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 250, 250, 5, 80 }
+#define DEFAULT_MAX_FEEDRATE          { 250, 250, 5, 120 }
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
@@ -761,7 +767,7 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_ACCELERATION      { 2500, 2500, 100, 10000 }
+#define DEFAULT_MAX_ACCELERATION      { 2500, 2500, 100, 4000 }
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
 #if ENABLED(LIMITED_MAX_ACCEL_EDITING)
@@ -882,7 +888,7 @@
  * A Fix-Mounted Probe either doesn't deploy or needs manual deployment.
  *   (e.g., an inductive probe or a nozzle-based probe-switch.)
  */
-#define FIX_MOUNTED_PROBE
+//#define FIX_MOUNTED_PROBE
 
 /**
  * Use the nozzle as the probe, as with a conductive
@@ -899,7 +905,7 @@
 /**
  * The BLTouch probe uses a Hall effect sensor and emulates a servo.
  */
-//#define BLTOUCH
+#define BLTOUCH
 
 /**
  * Pressure sensor with a BLTouch-like interface
@@ -986,11 +992,12 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#define NOZZLE_TO_PROBE_OFFSET { 23, 5, 0 }
+//#define NOZZLE_TO_PROBE_OFFSET { 23, 5, 0 } // PINDA offset
+#define NOZZLE_TO_PROBE_OFFSET { -24.3, -34.1, 0 } //BL Touch offset
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
-#define PROBING_MARGIN 10
+#define PROBING_MARGIN 12
 
 // X and Y axis travel speed (mm/min) between probes
 #define XY_PROBE_SPEED (180*60)
@@ -1030,7 +1037,7 @@
 #define Z_CLEARANCE_DEPLOY_PROBE    0 // Z Clearance for Deploy/Stow
 #define Z_CLEARANCE_BETWEEN_PROBES  2 // Z Clearance between probe points
 #define Z_CLEARANCE_MULTI_PROBE     1 // Z Clearance between multiple probes
-//#define Z_AFTER_PROBING           5 // Z position after probing is done
+#define Z_AFTER_PROBING           5 // Z position after probing is done
 
 #define Z_PROBE_LOW_POINT          -4 // Farthest distance below the trigger-point to go before stopping
 
@@ -1093,7 +1100,7 @@
 // @section extruder
 
 // For direct drive extruder v9 set to true, for geared extruder set to false.
-#define INVERT_E0_DIR false
+#define INVERT_E0_DIR true
 #define INVERT_E1_DIR false
 #define INVERT_E2_DIR false
 #define INVERT_E3_DIR false
@@ -1131,7 +1138,7 @@
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
 #define Y_MAX_POS Y_BED_SIZE
-#define Z_MAX_POS 210
+#define Z_MAX_POS 310
 
 /**
  * Software Endstops
@@ -1504,7 +1511,7 @@
 
 // Preheat Constants
 #define PREHEAT_1_LABEL       "PLA"
-#define PREHEAT_1_TEMP_HOTEND 190
+#define PREHEAT_1_TEMP_HOTEND 210
 #define PREHEAT_1_TEMP_BED     60
 #define PREHEAT_1_FAN_SPEED     0 // Value from 0 to 255
 
@@ -1732,7 +1739,7 @@
  *
  * :[0:'Classic', 1:'Průša']
  */
-#define LCD_INFO_SCREEN_STYLE 1
+#define LCD_INFO_SCREEN_STYLE 0
 
 /**
  * SD CARD
@@ -1828,7 +1835,7 @@
 // If you have a speaker that can produce tones, enable it here.
 // By default Marlin assumes you have a buzzer with a fixed frequency.
 //
-//#define SPEAKER
+#define SPEAKER
 
 //
 // The duration and frequency for the UI feedback sound.
@@ -1851,7 +1858,7 @@
 //
 // Note: Usually sold with a white PCB.
 //
-#define REPRAP_DISCOUNT_SMART_CONTROLLER
+//#define REPRAP_DISCOUNT_SMART_CONTROLLER
 
 //
 // Original RADDS LCD Display+Encoder+SDCardReader
@@ -2001,7 +2008,7 @@
 // RepRapDiscount FULL GRAPHIC Smart Controller
 // https://reprap.org/wiki/RepRapDiscount_Full_Graphic_Smart_Controller
 //
-//#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
+#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
 
 //
 // ReprapWorld Graphical LCD

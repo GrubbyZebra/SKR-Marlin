@@ -742,7 +742,7 @@
   // Define probe X and Y positions for Z1, Z2 [, Z3 [, Z4]]
   // If not defined, probe limits will be used.
   // Override with 'M422 S<index> X<pos> Y<pos>'
-  #define Z_STEPPER_ALIGN_XY { {  40, 90 }, { 230,  90 } }
+  #define Z_STEPPER_ALIGN_XY { {  40, 120 }, { 210,  120 } }
 
   /**
    * Orientation for the automatically-calculated probe positions.
@@ -807,8 +807,8 @@
   #define TRAMMING_POINT_NAME_4 "Back-Left"
 
   #define RESTORE_LEVELING_AFTER_G35    // Enable to restore leveling setup after operation
-  //#define REPORT_TRAMMING_MM          // Report Z deviation (mm) for each point relative to the first
-  //#define ASSISTED_TRAMMING_MENU_ITEM // Add a menu item for Assisted Tramming
+  #define REPORT_TRAMMING_MM          // Report Z deviation (mm) for each point relative to the first
+  #define ASSISTED_TRAMMING_MENU_ITEM // Add a menu item for Assisted Tramming
 
   /**
    * Screw thread:
@@ -1235,11 +1235,11 @@
    *  - SDSORT_CACHE_NAMES will retain the sorted file listing in RAM. (Expensive!)
    *  - SDSORT_DYNAMIC_RAM only uses RAM when the SD menu is visible. (Use with caution!)
    */
-  //#define SDCARD_SORT_ALPHA
+  #define SDCARD_SORT_ALPHA
 
   // SD Card Sorting options
   #if ENABLED(SDCARD_SORT_ALPHA)
-    #define SDSORT_LIMIT       40     // Maximum number of sorted items (10-256). Costs 27 bytes each.
+    #define SDSORT_LIMIT       60     // Maximum number of sorted items (10-256). Costs 27 bytes each.
     #define FOLDER_SORTING     -1     // -1=above  0=none  1=below
     #define SDSORT_GCODE       false  // Allow turning sorting on/off with LCD and M34 G-code.
     #define SDSORT_USES_RAM    false  // Pre-allocate a static array for faster pre-sorting.
@@ -1251,7 +1251,7 @@
   #endif
 
   // This allows hosts to request long names for files and folders with M33
-  //#define LONG_FILENAME_HOST_SUPPORT
+  #define LONG_FILENAME_HOST_SUPPORT
 
   // Enable this option to scroll long filenames in the SD card menu
   #define SCROLL_LONG_FILENAMES
@@ -1271,7 +1271,7 @@
    * On print completion the LCD Menu will open with the file selected.
    * You can just click to start the print, or navigate elsewhere.
    */
-  //#define SD_REPRINT_LAST_SELECTED_FILE
+  #define SD_REPRINT_LAST_SELECTED_FILE
 
   /**
    * Auto-report SdCard status with M27 S<seconds>
@@ -1422,7 +1422,7 @@
   //#define STATUS_FAN_FRAMES 3       // :[0,1,2,3,4] Number of fan animation frames
   //#define STATUS_HEAT_PERCENT       // Show heating in a progress bar
   //#define BOOT_MARLIN_LOGO_SMALL    // Show a smaller Marlin logo on the Boot Screen (saving 399 bytes of flash)
-  //#define BOOT_MARLIN_LOGO_ANIMATED // Animated Marlin logo. Costs ~‭3260 (or ~940) bytes of PROGMEM.
+  #define BOOT_MARLIN_LOGO_ANIMATED // Animated Marlin logo. Costs ~‭3260 (or ~940) bytes of PROGMEM.
 
   // Frivolous Game Options
   //#define MARLIN_BRICKOUT
@@ -3480,11 +3480,11 @@
   // Serial port used for communication with MMU2.
   // For AVR enable the UART port used for the MMU. (e.g., mmuSerial)
   // For 32-bit boards check your HAL for available serial ports. (e.g., Serial2)
-  #define MMU2_SERIAL_PORT 2
-  #define MMU2_SERIAL mmuSerial
+  #define MMU2_SERIAL_PORT 0
+  #define MMU2_SERIAL Serial3
 
   // Use hardware reset for MMU if a pin is defined for it
-  //#define MMU2_RST_PIN 23
+  #define MMU2_RST_PIN P0_26
 
   // Enable if the MMU2 has 12V stepper motors (MMU2 Firmware 1.0.2 and up)
   //#define MMU2_MODE_12V
@@ -3493,7 +3493,7 @@
   #define MMU2_FILAMENT_RUNOUT_SCRIPT "M600"
 
   // Add an LCD menu for MMU2
-  //#define MMU2_MENUS
+  #define MMU2_MENUS
   #if ENABLED(MMU2_MENUS)
     // Settings for filament load / unload from the LCD menu.
     // This is for Průša MK3-style extruders. Customize for your hardware.
@@ -3530,7 +3530,7 @@
    * move up to the gears. If no filament is detected, the MMU2 can make some more attempts.
    * If all attempts fail, a filament runout will be triggered.
    */
-  //#define MMU_EXTRUDER_SENSOR
+  #define MMU_EXTRUDER_SENSOR
   #if ENABLED(MMU_EXTRUDER_SENSOR)
     #define MMU_LOADING_ATTEMPTS_NR 5 // max. number of attempts to load filament if first load fail
   #endif
@@ -3540,7 +3540,7 @@
    * This mode requires a MK3S extruder with a sensor at the extruder idler, like the MMU2S.
    * See https://help.prusa3d.com/en/guide/3b-mk3s-mk2-5s-extruder-upgrade_41560, step 11
    */
-  //#define PRUSA_MMU2_S_MODE
+  #define PRUSA_MMU2_S_MODE
   #if ENABLED(PRUSA_MMU2_S_MODE)
     #define MMU2_C0_RETRY   5             // Number of retries (total time = timeout*retries)
 
