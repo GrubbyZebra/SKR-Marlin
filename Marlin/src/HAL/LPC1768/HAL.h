@@ -96,6 +96,29 @@ extern "C" volatile uint32_t _millis;
   #define NUM_SERIAL 1
 #endif
 
+#ifdef SERIAL_PORT_3
+  #if SERIAL_PORT_3 == SERIAL_PORT
+    #error "SERIAL_PORT_3 must be different than SERIAL_PORT. Please update your configuration."
+  #elif SERIAL_PORT_3 == SERIAL_PORT_2
+    #error "SERIAL_PORT_3 must be different than SERIAL_PORT. Please update your configuration."
+  #elif SERIAL_PORT_3 == -1
+    #define MYSERIAL2 UsbSerial
+  #elif SERIAL_PORT_3 == 0
+    #define MYSERIAL2 MSerial
+  #elif SERIAL_PORT_3 == 1
+    #define MYSERIAL2 MSerial1
+  #elif SERIAL_PORT_3 == 2
+    #define MYSERIAL2 MSerial2
+  #elif SERIAL_PORT_3 == 3
+    #define MYSERIAL2 MSerial3
+  #else
+    #error "SERIAL_PORT_3 must be from -1 to 3. Please update your configuration."
+  #endif
+  #define NUM_SERIAL 3
+#else
+  #define NUM_SERIAL 1
+#endif
+
 #ifdef DGUS_SERIAL_PORT
   #if DGUS_SERIAL_PORT == SERIAL_PORT
     #error "DGUS_SERIAL_PORT must be different than SERIAL_PORT. Please update your configuration."
