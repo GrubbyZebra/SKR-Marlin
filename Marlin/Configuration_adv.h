@@ -3480,7 +3480,7 @@
   // Serial port used for communication with MMU2.
   // For AVR enable the UART port used for the MMU. (e.g., mmuSerial)
   // For 32-bit boards check your HAL for available serial ports. (e.g., Serial2)
-  #define MMU2_SERIAL_PORT 0
+  #define MMU2_SERIAL_PORT 3
   #define MMU2_SERIAL Serial3
 
   // Use hardware reset for MMU if a pin is defined for it
