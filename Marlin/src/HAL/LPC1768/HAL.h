@@ -89,7 +89,7 @@ extern "C" volatile uint32_t _millis;
   #if SERIAL_PORT_3 == -1
     #define MYSERIAL2 UsbSerial
   #elif WITHIN(SERIAL_PORT_3, 0, 3)
-    #define MYSERIAL2 MSERIAL(SERIAL_PORT_2)
+    #define MYSERIAL2 MSERIAL(SERIAL_PORT_3)
   #else
     #error "SERIAL_PORT_3 must be from -1 to 3. Please update your configuration."
   #endif
